@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Agaamin - Payment Page</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap" rel="stylesheet">
+</head>
+<style>
+    body {
+        color: white;
+    }
+</style>
+<body>
+    <div class="page">
+        <div class="form">
+            <h1>Transaction Details</h1>
+            <form action="">
+                <div class="input-box">
+                    <label>Paying to</label>
+                    <p>abc.bh3</p><br>
+                </div>
+                <div class="input-box">
+                    <label>UPI ID</label>
+                    <p id="txtRecordResult"></p>
+                    <br>
+                </div>
+                <div class="input-box">
+                    <label>Enter Money Amount</label>
+                    <br>
+                    <input type="text" name="username" autocomplete="off" required>
+                </div>
+                <button class="btn" type="submit">Proceed with the Payment</button>
+            </form>
+        </div>
+    </div>
+    <script>
+        function displayResult() {
+            const txtRecordResult = document.getElementById('txtRecordResult');
+            const txtRecord = localStorage.getItem('txtRecord');
+            const error = localStorage.getItem('error');
+
+            if (txtRecord) {
+                txtRecordResult.innerHTML = `<p>${txtRecord}</p>`;
+            } else if (error) {
+                txtRecordResult.innerHTML = `<h3>Error:</h3><p>${error}</p>`;
+            } else {
+                txtRecordResult.innerHTML = `<h3>No data found</h3>`;
+            }
+
+            // Clear local storage after displaying the result
+            localStorage.removeItem('txtRecord');
+            localStorage.removeItem('error');
+        }
+
+        // Call the function to display the result when the page loads
+        window.onload = displayResult;
+    </script>
+</body>
+</html>
